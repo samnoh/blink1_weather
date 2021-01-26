@@ -11,6 +11,7 @@ const myBlink = new Blink1();
 async function main() {
     let { uvi } = await api.getCurrentWeather();
     uvi = 3;
+
     switch (uvi) {
         case 0:
         case 1:

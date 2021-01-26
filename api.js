@@ -2,8 +2,8 @@ const axios = require('axios');
 
 const lat = '-36.8509';
 const lon = '174.7645';
-const APIKey = process.env.API_KEY;
-const APIOneCall = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+const appid = process.env.API_KEY;
+const APIOneCall = `https://api.openweathermap.org/data/2.5/onecall`; // OpenWeather OneCallAPI
 const parts = ['current', 'minutely', 'hourly', 'daily', 'alerts'];
 
 function _getExcludePartsByType(type) {
@@ -13,7 +13,14 @@ function _getExcludePartsByType(type) {
 async function _getWeatherAPIData(type) {
     try {
         const exclude = _getExcludePartsByType(type);
-        const response = await axios.get(`${APIOneCall}&exclude=${exclude}`);
+        const response = await axios.get(APIOneCall, {
+            params: {
+                lat,
+                lon,
+                appid,
+                exclude,
+            },
+        });
 
         return type ? response.data[type] : response.data;
     } catch (error) {
