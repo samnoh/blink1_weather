@@ -1,0 +1,17 @@
+{
+  "name": "Blink",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "Sam Noh <samnoh.dev@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "0.21.1",
+    "node-blink1": "0.5.1"
+  }
+}
