@@ -9,10 +9,15 @@ const RGB = require('./colors');
 const myBlink = new Blink1();
 
 async function main() {
-    let { uvi } = await api.getCurrentWeather();
-    uvi = 3;
+    const weatherData = await api.getCurrentWeather();
 
-    switch (uvi) {
+    if (!weatherData.uvi) {
+        return myBlink.setRGB(...RGB.green);
+    }
+
+    console.log(weatherData.uvi);
+
+    switch (parseInt(weatherData.uvi)) {
         case 0:
         case 1:
         case 2:
@@ -28,10 +33,8 @@ async function main() {
         case 9:
         case 10:
             return myBlink.setRGB(...RGB.red); // very high
-        case 11:
-            return myBlink.setRGB(...RGB.purple); // extreme
         default:
-            return myBlink.off();
+            return myBlink.setRGB(...RGB.purple); // 11+ extreme
     }
 }
 
